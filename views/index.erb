@@ -1,0 +1,66 @@
+<h1>Analizador PL0 usando Jison</h1>
+<nav>
+  <ul>
+    <li> <a href="/grammar"  title="Grammar" <%=current?("/grammar")%>>Gramática</a> </li>
+    <li> <a href="/"  title="Home" <%=current?("/")%>>Home</a> </li>
+    <li> <a href="/auth/google_oauth2"  title="Google" <%=current?("/auth/google_oauth2")%>>Identifícate con Google</a> </li>
+    <li> <a href="/auth/github"  title="Google" <%=current?("/auth/github")%>>Identifícate con Github</a> </li>
+    <li> <a href="http://campusvirtual.ull.es/1314/course/view.php?id=1104"  title="PL-UDV">PL-UDV</a> </li>
+    <li> <a href="https://bitbucket.org/alu0100695816/pract07jison"  title="Repo">Repo Bitbucket</a> </li>
+    <li> <a href="http://en.wikipedia.org/wiki/Recursive_descent_parser#Example_parser"   title="Wikipedia">Gramática PL0</a> </li>
+    <li> <a href="http://zaach.github.io/jison/"  title="Jison">Jison</a> </li>
+    <li> <a href="http://intridea.github.io/omniauth/"  title="Omniauth">Intridea Omniauth</a> </li>
+    <li> <a href="https://console.developers.google.com/project"  title="Google Developers Console">Google Dev Console</a> </li>
+    <li> <a href="http://crguezl.github.io/pl-html/"  title="PLGH">PL-GH</a> </li>
+    <li> <a href="https://github.com/SFEley/sinatra-flash"  title="sinatra-flash">sinatra-flash</a> </li>
+    <li> <a href="https://plus.google.com/u/1/102519263922144160357/posts" title="crguezl">Alberto Fariña</a> </li>
+    <li> <a href="https://plus.google.com/u/1/102002588532285161330/posts" title="crguezl">Nestor Albelo</a> </li>
+  </ul>
+</nav>
+<div id="content">
+  <p>
+  <nav>
+  <ul>
+    <% programs.sort.each do |p| %>
+      <li><a href="<%= p.name %>" <%=current?('/'+p.name)%>><%= p.name %></a></li>
+    <% end %>
+  </ul>
+  </nav>
+  <table>
+    <tr>
+      <td>
+        <form action="/save" method="post">
+          <textarea id="input" name="input" 
+                    autofocus cols = "40" rows = "4">
+<%= source %>
+          </textarea>
+          <br/>
+          <br>
+          <label for="saveas">Save as</label>
+          <input id="saveas" type="text" name="fname" 
+                 title="Un identificador (que no sea la palabra 'test')"
+                 pattern="^(?!test$)\w+$"
+          />
+        </form>
+      </td>
+      <td><button id="parse" type="button">parse</button></td>
+    </tr>
+  </table>
+  </p>
+  <br>
+  <p class="loadfile">
+    <input type="file" id="examples" />
+  </p>
+  <p>
+    <div id="flash"><%= flash[:notice] if flash[:notice]%></div>
+  </p>
+  <div class="output"><!-- Output goes here! --> 
+<pre>
+<span id="output">
+</span>
+</pre>
+  </div>
+</div>
+
+<script type="text/javascript" src="pl0.js"></script>
+<script type="text/javascript" src="main.js"></script>

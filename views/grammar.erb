@@ -1,0 +1,56 @@
+<script type="text/javascript" src="path-to-mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<nav>
+  <ul>
+    <li> <a href="/grammar"  title="Grammar" <%=current?("/grammar")%>>Gramática</a> </li>
+    <li> <a href="/"  title="Home" <%=current?("/")%>>Home</a> </li>
+    <li> <a href="/auth/google_oauth2"  title="Google" <%=current?("/auth/google_oauth2")%>>Identifícate con Google</a> </li>
+    <li> <a href="/auth/github"  title="Google" <%=current?("/auth/github")%>>Identifícate con Github</a> </li>
+    <li> <a href="http://campusvirtual.ull.es/1314/course/view.php?id=1104"  title="PL-UDV">PL-UDV</a> </li>
+    <li> <a href="https://bitbucket.org/alu0100695816/pract07jison"  title="Repo">Repo Bitbucket</a> </li>
+    <li> <a href="http://en.wikipedia.org/wiki/Recursive_descent_parser#Example_parser"   title="Wikipedia">Gramática PL0</a> </li>
+    <li> <a href="http://zaach.github.io/jison/"  title="Jison">Jison</a> </li>
+    <li> <a href="http://intridea.github.io/omniauth/"  title="Omniauth">Intridea Omniauth</a> </li>
+    <li> <a href="https://console.developers.google.com/project"  title="Google Developers Console">Google Dev Console</a> </li>
+    <li> <a href="http://crguezl.github.io/pl-html/"  title="PLGH">PL-GH</a> </li>
+    <li> <a href="https://github.com/SFEley/sinatra-flash"  title="sinatra-flash">sinatra-flash</a> </li>
+    <li> <a href="https://plus.google.com/u/1/102519263922144160357/posts" title="crguezl">Alberto Fariña</a> </li>
+    <li> <a href="https://plus.google.com/u/1/102002588532285161330/posts" title="crguezl">Nestor Albelo</a>
+  </ul>
+</nav>
+
+<br>
+Recuerde que una gramática $G$ es una cuaterna $G =(\Sigma,V,P,S)$.
+<ol>
+  <li>$\Sigma$ es el conjunto de terminales. 
+  <li>$V$ es un conjunto (disjunto de $\Sigma$) que se denomina conjunto de <i>variables sintácticas</i> o <i>categorías gramáticales</i>,
+  <li>$P$ es un conjunto de pares de $V \times (V \cup \Sigma )^*$. En vez de escribir
+  un par usando la notación $(A, \alpha) \in P$ se escribe $A \rightarrow \alpha$.
+  Un elemento de $P$ se denomina producción. 
+  <li>Por último, $S$ es un símbolo del conjunto
+  $V$ que se denomina símbolo de arranque.
+</ol>
+<ol>
+  <li> $\Sigma = \{ ID, NUM, CONST, ".", ",", =, ;, VAR, PROCEDURE, CALL, BEGIN, END, IF, THEN, ELSE, WHILE, DO, ODD, =, ==, !=, <, <=, >, >=, +, -, *, /, (, ) \}$, 
+  <li> $V = \{ program, block, statement, condition, expression, term, factor \}$  <br />
+  <li> Reglas de producción:
+    <ol>
+	  <li> $program \rightarrow block$ '.'
+      <li> $block \rightarrow$ $($'CONST' $ID$ '=' $NUM$ $($',' $ID$ '=' $NUM$$)$* ';'$)?$  $($'VAR' $ID$ $($',' $ID$$)$* ';'$)?$ $($'PROCEDURE' $ID$ $($'(' $( ID ($ ',' $ID )*)?$ ')'$)?$ ';' $block$ ';'$)*$ $statement$
+      <li> $statement \rightarrow$ $ID$ '=' $expression \vert$ 'CALL' $ID$ $($'(' $( (ID\vert NUM) ($ ',' $(ID\vert NUM) )*)?$ ')'$)?$ $\vert$ 'BEGIN' $statement$ $($';' $statement)*$ 'END' $\vert$ <br>'IF' $condition$ 'THEN' $statement$ 'ELSE' $statement$ $\vert$ 'IF' $condition$ 'THEN' $statement \vert$ 'WHILE' $condition$ 'DO' $statement$
+      <li> $condition \rightarrow$ 'ODD' $expression \vert expression$ $($'=='$\vert$'!='$\vert$'<'$\vert$'<='$\vert$'>'$\vert$'>='$)$ $expression$
+      <li> $expression \rightarrow$ $($'+'$\vert$'-'$)?$ $term$ $(($'+'$\vert$'-'$)$ $term)*$
+      <li> $term \rightarrow factor$ $(($'*'$\vert$'/'$)$ $factor)*$
+      <li>  $factor \rightarrow$ $ID$ $\vert$ $NUM$ $\vert$ '(' $expression$ ')'
+    </ol>
+  <li> Expresión de arranque: $program$
+</ol>
+<BR>
+<BR>
+
