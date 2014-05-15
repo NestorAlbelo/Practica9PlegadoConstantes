@@ -3,7 +3,6 @@
   <ul>
     <li> <a href="/grammar"  title="Grammar" <%=current?("/grammar")%>>Gramática</a> </li>
     <li> <a href="/"  title="Home" <%=current?("/")%>>Home</a> </li>
-    <li> <a href="/test" title="Tests" <%=current?("/test")%>>Test</a> </li>
     <li> <a href="/auth/google_oauth2"  title="Google" <%=current?("/auth/google_oauth2")%>>Identifícate con Google</a> </li>
     <li> <a href="/auth/github"  title="Google" <%=current?("/auth/github")%>>Identifícate con Github</a> </li>
     <li> <a href="http://campusvirtual.ull.es/1314/course/view.php?id=1104"  title="PL-UDV">PL-UDV</a> </li>
